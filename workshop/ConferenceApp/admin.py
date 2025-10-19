@@ -57,6 +57,17 @@ class AdminPerson(admin.ModelAdmin):
         return 'N/A'
     
     duration.short_description = 'Duration (days)'
+   
+   
+#this is an action to mark selected submissions as payed    
+@admin.action(description='Mark selected submissions as payed')
+def mark_as_payed(modeladmin, request, queryset):
+    queryset.update(payed=True)
+
+@admin.action(description='Mark selected submissions as accepted')
+def mark_as_accepted(modeladmin, request, queryset):
+    queryset.update(status='Accepted')
+    
 
 
 class SubmissionAdmin(admin.ModelAdmin):
@@ -74,7 +85,7 @@ class SubmissionAdmin(admin.ModelAdmin):
             'fields': ('paper', 'conference_id')
         }),
         ("Tracking", {
-            'fields': ('status', 'payed', 'submission_date', 'user_id')
+            'fields': ('status', 'payed', 'user_id')
         }),
     )
     
@@ -86,6 +97,14 @@ class SubmissionAdmin(admin.ModelAdmin):
             return obj.abstract[:50] + '...' if len(obj.abstract) > 50 else obj.abstract
         return '-'
     short_abstract.short_description = 'Abstract Preview'
+    
+    
+    actions = [mark_as_payed , mark_as_accepted]
+
+    
+    
+    
+    
     
 admin.site.unregister(Submission)
 admin.site.register(Submission, SubmissionAdmin)

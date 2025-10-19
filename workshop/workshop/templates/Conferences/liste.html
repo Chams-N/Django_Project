@@ -1,0 +1,22 @@
+
+<!-- This is client Side IN TWIG-->
+
+<h2> la liste des conferences </h2>
+
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>description</th>
+        <th>Actoions</th>
+
+    </tr>
+{% for c in liste %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.description }}</td>
+        <td>
+            <a href="{% url 'conference_details' c.pk %}">Details</a>
+        </td>
+    </tr>
+
+{% endfor %}
