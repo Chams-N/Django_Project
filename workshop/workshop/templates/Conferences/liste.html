@@ -1,4 +1,7 @@
 
+{% extends 'base.html' %} <!-- this is calling  -->
+{% block content %}
+
 <!-- This is client Side IN TWIG-->
 
 <h2> la liste des conferences </h2>
@@ -15,8 +18,14 @@
         <td>{{ c.name }}</td>
         <td>{{ c.description }}</td>
         <td>
-            <a href="{% url 'conference_details' c.pk %}">Details</a>
+            <a href="{% url 'conference_details' c.pk %}">Details</a> <br></br>
+            {%if user.is_authenticated and user.role == 'Commitee' %}  <!-- Conditional check for user authentication and role -->
+                <a href="{% url 'conference_edit' c.pk %}">Modifier</a>
+                <a href="{%url 'conference_delete' c.pk %}">Supprimer</a>
+            {%endif%}
         </td>
     </tr>
 
 {% endfor %}
+</table>
+{% endblock %}

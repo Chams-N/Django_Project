@@ -30,7 +30,7 @@ class User(AbstractUser):
     affiliation=models.CharField(max_length=255)
     ROLE=[
         ("Participant","Participant"),
-        ("Committee","Organizing Committee Member"),
+        ("Commitee","Organizing Commitee Member"),
         ]
     role=models.CharField(max_length=255,choices=ROLE,default="Participant")
     nationality=models.CharField(max_length=50)

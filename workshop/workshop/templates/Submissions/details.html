@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Détails de la soumission</h2>
+
+<ul>
+    <li><strong>Titre :</strong> {{ submission.title }}</li>
+    <li><strong>Résumé :</strong> {{ submission.abstract }}</li>
+    <li><strong>Mots-clés :</strong> {{ submission.keywords }}</li>
+    <li><strong>Statut :</strong> {{ submission.status }}</li>
+    <li><strong>Conférence :</strong> {{ submission.conference.name }}</li>
+    <li><strong>Auteur :</strong> {{ submission.user.username }}</li>
+    <li><strong>Date de soumission :</strong> {{ submission.submission_date|date:"d/m/Y H:i" }}</li>
+</ul>
+
+<p><a href="{{ submission.pdf.url }}" download>Télécharger le PDF</a></p>
+<a href="{% url 'submission_list' %}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

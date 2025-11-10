@@ -1,0 +1,11 @@
+{% if view.object.pk %}
+    <h2>Modifier la conférence: {{ view.object.name }}</h2>
+{% else %}
+    <h2>Ajouter une nouvelle conférence</h2>
+{% endif %}
+<form method="post">
+    {% csrf_token %}   
+    <!-- this is a security feature in Django forms by makin a token for each form made-->
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>

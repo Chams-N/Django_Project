@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Connection</h2>
+<form method="POST">
+    {% csrf_token %}  <!-- CSRF token for security -->
+    {{ form.as_p }}
+    <button type="submit">Connect</button>
+</form>
+{% endblock %}
